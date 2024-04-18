@@ -40,7 +40,7 @@ class AVA_Evaluator(object):
         # self.frame_list = os.path.join(d_cfg['data_root'], d_cfg['frame_list'])
         
         # self.exclusion_file = os.path.join(self.annotation_dir, d_cfg['val_exclusion_file'])
-        self.exclusion_file = os.path.join("/kaggle/input/exclusion/exclusion.csv")
+        self.exclusion_file = os.path.join("/kaggle/input/exclusion-version1/ava_train_excluded_timestamps_v2.2.csv")
         self.gt_box_list = os.path.join("/kaggle/input/val-csv/val.csv")
 
         # load data
