@@ -173,7 +173,7 @@ class AVA_Dataset(Dataset):
             for box_labels in self.l_boxes[idx]:
                 bbox = box_labels[0]
                 label = box_labels[1]
-                multi_hot_label = np.zeros(1 + 5)
+                multi_hot_label = np.zeros(1 +  self.num_classes)
                 multi_hot_label[..., label] = 1.0
 
                 boxes.append(bbox)
@@ -183,7 +183,7 @@ class AVA_Dataset(Dataset):
             # renormalize bbox
             boxes[..., [0, 2]] *= ow
             boxes[..., [1, 3]] *= oh
-            labels = np.array(labels).reshape(-1, 5)
+            labels = np.array(labels).reshape(-1,  self.num_classes)
 
             # target: [N, 4 + C]
             target = np.concatenate([boxes, labels], axis=-1)
@@ -199,8 +199,8 @@ class AVA_Dataset(Dataset):
                 'labels': target[:, 4:].long(),  # [N, C]
                 'orig_size': [ow, oh]
                 #,
-                #'video_idx': video_idx,
-                #'sec': sec,
+                'video_idx': "aaaaaa",
+                'sec': idx,
 
             }
 
