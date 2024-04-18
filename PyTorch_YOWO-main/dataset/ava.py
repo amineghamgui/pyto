@@ -22,7 +22,7 @@ class AVA_Dataset(Dataset):
                  len_clip=16,
                  sampling_rate=1):
         self._downsample = 4
-        self.num_classes = 5             
+        self.num_classes = 1             
         # self.num_classes = 80
         self.data_root = cfg['data_root']
         self.frames_dir = os.path.join(cfg['data_root'], cfg['frames_dir'])
@@ -30,11 +30,11 @@ class AVA_Dataset(Dataset):
         self.annotation_dir = os.path.join(cfg['data_root'], cfg['annotation_dir'])
         self.labelmap_file = os.path.join(cfg['data_root'], cfg['annotation_dir'], cfg['labelmap_file'])
         if is_train:
-            self.gt_box_list = os.path.join(self.annotation_dir, cfg['train_gt_box_list'])
-            self.exclusion_file = os.path.join(self.annotation_dir, cfg['train_exclusion_file'])
+            self.pathhhhh = os.path.join("/kaggle/input/train-csv/train.csv")
+            self.exclusion_file = os.path.join("/kaggle/input/exclusion-version1/ava_train_excluded_timestamps_v2.2.csv")
         else:
-            self.gt_box_list = os.path.join(self.annotation_dir, cfg['val_gt_box_list'])
-            self.exclusion_file = os.path.join(self.annotation_dir, cfg['val_exclusion_file'])
+            self.pathhhhh = os.path.join("/kaggle/input/val-csv/val.csv")
+            self.exclusion_file = os.path.join("/kaggle/input/exclusion-version1/ava_train_excluded_timestamps_v2.2.csv")
 
         self.transform = transform
         self.is_train = is_train
@@ -43,7 +43,7 @@ class AVA_Dataset(Dataset):
         self.len_clip = len_clip
         self.sampling_rate = sampling_rate
         self.seq_len = self.len_clip * self.sampling_rate
-        self.pathhhhh="/kaggle/input/train-csv/train.csv"
+        #self.pathhhhh="/kaggle/input/train-csv/train.csv"
         # load ava data
         self._load_data()
 
@@ -197,10 +197,10 @@ class AVA_Dataset(Dataset):
             target = {
                 'boxes': target[:, :4].float(),  # [N, 4]
                 'labels': target[:, 4:].long(),  # [N, C]
-                'orig_size': [ow, oh],
+                'orig_size': [ow, oh]
                 #,
-                'video_idx': "video_idx",
-                'sec': idx,
+                #'video_idx': video_idx,
+                #'sec': sec,
 
             }
 
