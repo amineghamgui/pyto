@@ -18,7 +18,7 @@ dataset_config = {
         'saturation': 1.5,
         'exposure': 1.5,
         'sampling_rate': 1,
-        'len_clip': 16,
+        'len_clip': 25,
         # cls label
         'multi_hot': False,  # one hot
         # post process
