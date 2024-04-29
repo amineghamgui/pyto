@@ -78,7 +78,7 @@ if __name__ == '__main__':
         )
 
     
-    save_model_path = os.path.join("/kaggle/working/", 'modelform0.pth')
+    model_path = os.path.join("/kaggle/working/", 'modelform0.pth')
     torch.save(model, model_path)
 
     
