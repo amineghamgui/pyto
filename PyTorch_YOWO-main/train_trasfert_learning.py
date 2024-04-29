@@ -141,7 +141,10 @@ def train():
     # Load the model
     model = torch.load(model_path)
     model = model.to(device).train()
+    for param in model.parameters():
+        param.to(device)
 
+    
     # SyncBatchNorm
     if args.sybn and args.distributed:
         print('use SyncBatchNorm ...')
