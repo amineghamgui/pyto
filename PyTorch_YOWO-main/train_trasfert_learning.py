@@ -19,6 +19,7 @@ from utils.com_flops_params import FLOPs_and_Params
 from utils.misc import CollateFunc, build_dataset, build_dataloader
 from utils.solver.optimizer import build_optimizer
 from utils.solver.warmup_schedule import build_warmup
+from utils.misc import load_weight
 
 from config import build_dataset_config, build_model_config
 from models.detector import build_model
