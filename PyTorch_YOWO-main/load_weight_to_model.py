@@ -77,12 +77,17 @@ if __name__ == '__main__':
         trainable=False
         )
 
+    
+    save_model_path = os.path.join("/kaggle/working/", 'modelform0.pth')
+    torch.save(model, model_path)
+
+    
     # load trained weight
-    model = load_weight(model=model, path_to_ckpt=args.weight)
+    modelwithweight = load_weight(model=model, path_to_ckpt=args.weight)
     save_model_path = os.path.join("/kaggle/working/", 'model8888888.pth')
 
     # Enregistrez le modèle
-    torch.save(model, save_model_path)
+    torch.save(modelwithweight, save_model_path)
     # to eval
     model = model.to(device).eval()
  
