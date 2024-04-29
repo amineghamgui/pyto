@@ -1,7 +1,7 @@
 import cv2
 cv2.setNumThreads(0)
 cv2.ocl.setUseOpenCL(False)
-
+import torch
 import os
 import random
 import time
@@ -133,15 +133,13 @@ def train():
     batch_size = d_cfg['batch_size'] * distributed_utils.get_world_size()
     dataloader = build_dataloader(args, dataset, batch_size, CollateFunc(), is_train=True)
 
-    # build model
-    net = build_model(args=args,
-                      d_cfg=d_cfg,
-                      m_cfg=m_cfg,
-                      device=device, 
-                      num_classes=num_classes, 
-                      trainable=True,
-                      resume=args.resume)
-    model = net
+    
+
+    # Define the path where you saved the model
+    model_path=os.path.join("/kaggle/input/ava-model-5-classe-not-weigth/ava_model_5_classe.pth")
+    
+    # Load the model
+    model = torch.load(model_path)
     model = model.to(device).train()
 
     # SyncBatchNorm
