@@ -152,8 +152,8 @@ def load_weight(model, path_to_ckpt=None):
     model_state_dict = model.state_dict()
     # check
     for k in list(checkpoint_state_dict.keys()):
-        if k not in ['pred.weight', 'pred.bias']:
             if k in model_state_dict:
+              if k not in ['pred.weight', 'pred.bias']:
                 shape_model = tuple(model_state_dict[k].shape)
                 shape_checkpoint = tuple(checkpoint_state_dict[k].shape)
                 if shape_model != shape_checkpoint:
