@@ -214,19 +214,19 @@ if __name__ == '__main__':
     is_train = False
     img_size = 224
     len_clip = 25
-    dataset_config = {
-        #'data_root': '/kaggle/input/data-ava/ava',
-        'data_root':'/kaggle/input/ava-version2-oneclass/ava-20240312T085221Z-001/ava',
-        #'data_root': '/kaggle/input/data-ava/ava',
-        'frames_dir': 'frames/',
-        'frame_list': 'frame_lists/',
-        'annotation_dir': 'annotations/',
-        'train_gt_box_list': 'ava_v2.2/ava_train_v2.2.csv',
-        'val_gt_box_list': 'ava_v2.2/ava_val_v2.2.csv',
-        'train_exclusion_file': 'ava_v2.2/ava_train_excluded_timestamps_v2.2.csv',
-        'val_exclusion_file': 'ava_v2.2/ava_val_excluded_timestamps_v2.2.csv',
-        'labelmap_file': 'ava_v2.2/ava_action_list_v2.2.pbtxt',
-    }
+    # dataset_config = {
+    #     #'data_root': '/kaggle/input/data-ava/ava',
+    #     'data_root':'/kaggle/input/ava-version2-oneclass/ava-20240312T085221Z-001/ava',
+    #     #'data_root': '/kaggle/input/data-ava/ava',
+    #     'frames_dir': 'frames/',
+    #     'frame_list': 'frame_lists/',
+    #     'annotation_dir': 'annotations/',
+    #     'train_gt_box_list': 'ava_v2.2/ava_train_v2.2.csv',
+    #     'val_gt_box_list': 'ava_v2.2/ava_val_v2.2.csv',
+    #     'train_exclusion_file': 'ava_v2.2/ava_train_excluded_timestamps_v2.2.csv',
+    #     'val_exclusion_file': 'ava_v2.2/ava_val_excluded_timestamps_v2.2.csv',
+    #     'labelmap_file': 'ava_v2.2/ava_action_list_v2.2.pbtxt',
+    # }
     
     trans_config = {
         'pixel_mean': [0.45, 0.45, 0.45],
