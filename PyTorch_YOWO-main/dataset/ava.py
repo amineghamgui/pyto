@@ -23,12 +23,12 @@ class AVA_Dataset(Dataset):
                  sampling_rate=1):
         self._downsample = 4
         self.num_classes = 5             
-        # self.num_classes = 80
-        self.data_root = cfg['data_root']
-        self.frames_dir = os.path.join(cfg['data_root'], cfg['frames_dir'])
-        self.frame_list = os.path.join(cfg['data_root'], cfg['frame_list'])
-        self.annotation_dir = os.path.join(cfg['data_root'], cfg['annotation_dir'])
-        self.labelmap_file = os.path.join(cfg['data_root'], cfg['annotation_dir'], cfg['labelmap_file'])
+        
+        # self.data_root = cfg['data_root']
+        # self.frames_dir = os.path.join(cfg['data_root'], cfg['frames_dir'])
+        # self.frame_list = os.path.join(cfg['data_root'], cfg['frame_list'])
+        # self.annotation_dir = os.path.join(cfg['data_root'], cfg['annotation_dir'])
+        # self.labelmap_file = os.path.join(cfg['data_root'], cfg['annotation_dir'], cfg['labelmap_file'])
         if is_train:
             self.pathhhhh = os.path.join("/kaggle/input/train-csv/train.csv")
             self.exclusion_file = os.path.join("/kaggle/input/exclusion-version1/ava_train_excluded_timestamps_v2.2.csv")
