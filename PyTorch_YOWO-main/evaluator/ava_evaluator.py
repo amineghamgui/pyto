@@ -105,60 +105,6 @@ class AVA_Evaluator(object):
         return ret
 
 
-    # def load_image_lists(self, frames_dir, frame_list, is_train):
-    #     """
-    #     Loading image paths from corresponding files.
-
-    #     Args:
-    #         frames_dir (str): path to frames dir.
-    #         frame_list (str): path to frame list.
-    #         is_train (bool): if it is training dataset or not.
-
-    #     Returns:
-    #         image_paths (list[list]): a list of items. Each item (also a list)
-    #             corresponds to one video and contains the paths of images for
-    #             this video.
-    #         video_idx_to_name (list): a list which stores video names.
-    #     """
-    #     # frame_list_dir is /data3/ava/frame_lists/
-    #     # contains 'train.csv' and 'val.csv'
-    #     if is_train:
-    #         list_name = "train.csv"
-    #     else:
-    #         list_name = "val.csv"
-
-    #     list_filename = os.path.join(frame_list, list_name)
-
-    #     image_paths = defaultdict(list)
-    #     video_name_to_idx = {}
-    #     video_idx_to_name = []
-    #     with open(list_filename, "r") as f:
-    #         f.readline()
-    #         for line in f:
-    #             row = line.split()
-    #             # The format of each row should follow:
-    #             # original_vido_id video_id frame_id path labels.
-    #             assert len(row) == 5
-    #             video_name = row[0]
-
-    #             if video_name not in video_name_to_idx:
-    #                 idx = len(video_name_to_idx)
-    #                 video_name_to_idx[video_name] = idx
-    #                 video_idx_to_name.append(video_name)
-
-    #             data_key = video_name_to_idx[video_name]
-
-    #             image_paths[data_key].append(os.path.join(frames_dir, row[3]))
-
-    #     image_paths = [image_paths[i] for i in range(len(image_paths))]
-
-    #     print("Finished loading image paths from: {}".format(list_filename))
-
-    #     return image_paths, video_idx_to_name
-
-
-
-
     def update_stats(self, preds):
         self.all_preds.extend(preds)
 
