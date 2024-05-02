@@ -257,7 +257,7 @@ def train():
                     optimizer.zero_grad()
 
             # Display
-            if distributed_utils.is_main_process() and iter_i % 10 == 0:
+            if distributed_utils.is_main_process() and iter_i % 5 == 0:
                 t1 = time.time()
                 cur_lr = [param_group['lr']  for param_group in optimizer.param_groups]
                 # basic infor
