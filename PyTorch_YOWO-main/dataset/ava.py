@@ -137,7 +137,8 @@ class AVA_Dataset(Dataset):
                 self.l_clip.append(video_factory[keys][keys1])
                 print(keys1)
                 self.l_boxes.append(annotation_factory[keys][keys1])
-        
+        video_factory = None
+        annotation_factory=None
          
     def __len__(self):
         return len(self.l_boxes)
