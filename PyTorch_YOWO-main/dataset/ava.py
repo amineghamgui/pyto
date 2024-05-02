@@ -60,7 +60,8 @@ class AVA_Dataset(Dataset):
             success, frame = video_capture.read()
             if not success:
                 break
-            list_frames.append(Image.fromarray(frame))
+            frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            list_frames.append(Image.fromarray(frame_rgb))
 
         video_capture.release()
         return list_frames
