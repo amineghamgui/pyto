@@ -32,7 +32,7 @@ class AVA_Evaluator(object):
         self.full_ava_test = full_test_on_val
         # self.data_root = d_cfg['data_root']
         self.backup_dir = d_cfg['backup_dir']
-        self.annotation_dir = os.path.join(d_cfg['data_root'], d_cfg['annotation_dir'])
+        # self.annotation_dir = os.path.join(d_cfg['data_root'], d_cfg['annotation_dir'])
         #self.labelmap_file = os.path.join(self.annotation_dir, d_cfg['labelmap_file'])
         self.labelmap_file = os.path.join("/kaggle/input/labelmapfile/labelmapfile.pbtxt")
         
