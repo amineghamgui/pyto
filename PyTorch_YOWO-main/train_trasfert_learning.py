@@ -23,7 +23,7 @@ from utils.misc import load_weight
 
 from config import build_dataset_config, build_model_config
 from models.detector import build_model
-
+import torch.nn as nn
 
 GLOBAL_SEED = 42
 
