@@ -96,26 +96,6 @@ class YOWO(nn.Module):
         return anchor_boxes
         
 
-    # def decode_bbox(self, anchors, reg_pred):
-    #     """
-    #     Input:
-    #         anchors:  [B, M, 4] or [M, 4]
-    #         reg_pred: [B, M, 4] or [M, 4]
-    #     Output:
-    #         box_pred: [B, M, 4] or [M, 4]
-    #     """
-    #     # txty -> cxcy
-    #     xy_pred = reg_pred[..., :2].sigmoid() * self.stride + anchors[..., :2]
-    #     # twth -> wh
-    #     wh_pred = reg_pred[..., 2:].exp() * anchors[..., 2:]
-
-    #     # xywh -> x1y1x2y2
-    #     x1y1_pred = xy_pred - wh_pred * 0.5
-    #     x2y2_pred = xy_pred + wh_pred * 0.5
-    #     box_pred = torch.cat([x1y1_pred, x2y2_pred], dim=-1)
-
-    #     return box_pred
-
     def decode_bbox(self, anchors, reg_pred):
         """
         Input:
@@ -124,21 +104,41 @@ class YOWO(nn.Module):
         Output:
             box_pred: [B, M, 4] or [M, 4]
         """
-        # Déplacer les tenseurs sur le même appareil si nécessaire
-        if anchors.device != reg_pred.device:
-            anchors = anchors.to(reg_pred.device)
-    
         # txty -> cxcy
         xy_pred = reg_pred[..., :2].sigmoid() * self.stride + anchors[..., :2]
         # twth -> wh
         wh_pred = reg_pred[..., 2:].exp() * anchors[..., 2:]
-    
+
         # xywh -> x1y1x2y2
         x1y1_pred = xy_pred - wh_pred * 0.5
         x2y2_pred = xy_pred + wh_pred * 0.5
         box_pred = torch.cat([x1y1_pred, x2y2_pred], dim=-1)
-    
+
         return box_pred
+
+    # def decode_bbox(self, anchors, reg_pred):
+    #     """
+    #     Input:
+    #         anchors:  [B, M, 4] or [M, 4]
+    #         reg_pred: [B, M, 4] or [M, 4]
+    #     Output:
+    #         box_pred: [B, M, 4] or [M, 4]
+    #     """
+    #     # Déplacer les tenseurs sur le même appareil si nécessaire
+    #     if anchors.device != reg_pred.device:
+    #         anchors = anchors.to(reg_pred.device)
+    
+    #     # txty -> cxcy
+    #     xy_pred = reg_pred[..., :2].sigmoid() * self.stride + anchors[..., :2]
+    #     # twth -> wh
+    #     wh_pred = reg_pred[..., 2:].exp() * anchors[..., 2:]
+    
+    #     # xywh -> x1y1x2y2
+    #     x1y1_pred = xy_pred - wh_pred * 0.5
+    #     x2y2_pred = xy_pred + wh_pred * 0.5
+    #     box_pred = torch.cat([x1y1_pred, x2y2_pred], dim=-1)
+    
+    #     return box_pred
 
 
 
