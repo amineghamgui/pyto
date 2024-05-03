@@ -137,17 +137,26 @@ def train():
     
 
     # Define the path where you saved the model
-    model_path=os.path.join("/kaggle/input/ava-model-5-classe-not-weigth/ava_model_5_classe.pth")
+    # model_path=os.path.join("/kaggle/input/ava-model-5-classe-not-weigth/ava_model_5_classe.pth")
     
-    net = build_model(args=args,
-                      d_cfg=d_cfg,
-                      m_cfg=m_cfg,
-                      device=device, 
-                      num_classes=num_classes, 
-                      trainable=True,
-                      resume=args.resume)
-    modelwithweight = load_weight(model=net, path_to_ckpt="/kaggle/input/5classe-pretrained-ava/5classe pretrained ava.pth")
-    model = modelwithweight
+    # net = build_model(args=args,
+    #                   d_cfg=d_cfg,
+    #                   m_cfg=m_cfg,
+    #                   device=device, 
+    #                   num_classes=num_classes, 
+    #                   trainable=True,
+    #                   resume=args.resume)
+    # modelwithweight = load_weight(model=net, path_to_ckpt="/kaggle/input/5classe-pretrained-ava/5classe pretrained ava.pth")
+    # model = modelwithweight
+
+    
+
+    model_path = "/kaggle/input/model-yowo-80classes-pretrained-ava/model_yowo_80classes_pretrained_AVA.pth"
+    # Load the model
+    model = torch.load(model_path)
+    model.pred = nn.Conv2d(1024, model.num_anchors * (1 + 5+ 4), kernel_size=1)
+    model.num_classes=5
+    
     model = model.to(device).train()
     for param in model.parameters():
         param.to(device)
