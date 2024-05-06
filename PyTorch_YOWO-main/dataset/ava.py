@@ -30,10 +30,10 @@ class AVA_Dataset(Dataset):
         # self.annotation_dir = os.path.join(cfg['data_root'], cfg['annotation_dir'])
         # self.labelmap_file = os.path.join(cfg['data_root'], cfg['annotation_dir'], cfg['labelmap_file'])
         if is_train:
-            self.pathhhhh = os.path.join("/kaggle/input/train-csv/train.csv")
+            self.pathhhhh = os.path.join("/kaggle/input/train-csv-version1/train.csv")
             self.exclusion_file = os.path.join("/kaggle/input/exclusion-version1/ava_train_excluded_timestamps_v2.2.csv")
         else:
-            self.pathhhhh = os.path.join("/kaggle/input/val-csv/val.csv")
+            self.pathhhhh = os.path.join("/kaggle/input/validationcsv-version1/val.csv")
             self.exclusion_file = os.path.join("/kaggle/input/exclusion-version1/ava_train_excluded_timestamps_v2.2.csv")
 
         self.transform = transform
