@@ -248,7 +248,9 @@ def train():
                     loss_dict = model(video_clips, targets=targets)
             else:
                 loss_dict = model(video_clips, targets=targets)
-                
+
+            print(loss_dict)
+            print(type(loss_dict))
             losses = loss_dict['losses']
             losses = losses / d_cfg['accumulate']
 
