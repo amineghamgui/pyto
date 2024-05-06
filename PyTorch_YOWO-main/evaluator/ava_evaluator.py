@@ -33,7 +33,7 @@ class AVA_Evaluator(object):
 
         self.backup_dir = d_cfg['backup_dir']
 
-        self.labelmap_file = os.path.join("/kaggle/input/labelmapfile/labelmapfile.pbtxt")
+        self.labelmap_file = os.path.join("/kaggle/input/labelmapfile-version1/labelmapfile.pbtxt")
             
         self.exclusion_file = os.path.join("/kaggle/input/exclusion-version1/ava_train_excluded_timestamps_v2.2.csv")
         self.gt_box_list = os.path.join("/kaggle/input/validationcsv-version1/val.csv")
