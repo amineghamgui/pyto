@@ -30,16 +30,11 @@ class AVA_Evaluator(object):
                  version='v2.2'):
         self.all_preds = []
         self.full_ava_test = full_test_on_val
-        # self.data_root = d_cfg['data_root']
+
         self.backup_dir = d_cfg['backup_dir']
-        # self.annotation_dir = os.path.join(d_cfg['data_root'], d_cfg['annotation_dir'])
-        #self.labelmap_file = os.path.join(self.annotation_dir, d_cfg['labelmap_file'])
+
         self.labelmap_file = os.path.join("/kaggle/input/labelmapfile/labelmapfile.pbtxt")
-        
-        # self.frames_dir = os.path.join(d_cfg['data_root'], d_cfg['frames_dir'])
-        # self.frame_list = os.path.join(d_cfg['data_root'], d_cfg['frame_list'])
-        
-        # self.exclusion_file = os.path.join(self.annotation_dir, d_cfg['val_exclusion_file'])
+            
         self.exclusion_file = os.path.join("/kaggle/input/exclusion-version1/ava_train_excluded_timestamps_v2.2.csv")
         self.gt_box_list = os.path.join("/kaggle/input/validationcsv-version1/val.csv")
 
