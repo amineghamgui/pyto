@@ -24,11 +24,6 @@ class AVA_Dataset(Dataset):
         self._downsample = 4
         self.num_classes = 2          
         
-        # self.data_root = cfg['data_root']
-        # self.frames_dir = os.path.join(cfg['data_root'], cfg['frames_dir'])
-        # self.frame_list = os.path.join(cfg['data_root'], cfg['frame_list'])
-        # self.annotation_dir = os.path.join(cfg['data_root'], cfg['annotation_dir'])
-        # self.labelmap_file = os.path.join(cfg['data_root'], cfg['annotation_dir'], cfg['labelmap_file'])
         if is_train:
             self.pathhhhh = os.path.join("/kaggle/input/train-csv-version1/train.csv")
             self.exclusion_file = os.path.join("/kaggle/input/exclusion-version1/ava_train_excluded_timestamps_v2.2.csv")
@@ -223,17 +218,7 @@ if __name__ == '__main__':
     img_size = 224
     len_clip = 25
     dataset_config = {
-    #     #'data_root': '/kaggle/input/data-ava/ava',
-    #     'data_root':'/kaggle/input/ava-version2-oneclass/ava-20240312T085221Z-001/ava',
-    #     #'data_root': '/kaggle/input/data-ava/ava',
-    #     'frames_dir': 'frames/',
-    #     'frame_list': 'frame_lists/',
-    #     'annotation_dir': 'annotations/',
-    #     'train_gt_box_list': 'ava_v2.2/ava_train_v2.2.csv',
-    #     'val_gt_box_list': 'ava_v2.2/ava_val_v2.2.csv',
-    #     'train_exclusion_file': 'ava_v2.2/ava_train_excluded_timestamps_v2.2.csv',
-    #     'val_exclusion_file': 'ava_v2.2/ava_val_excluded_timestamps_v2.2.csv',
-    #     'labelmap_file': 'ava_v2.2/ava_action_list_v2.2.pbtxt',
+
     }
     
     trans_config = {
