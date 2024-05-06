@@ -62,7 +62,13 @@ class AVA_Dataset(Dataset):
                 break
             frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             list_frames.append(Image.fromarray(frame_rgb))
-
+        if (len(list_frames)%2==0):
+            last_frame=len(list_frames)//2
+            list_frames=list_frames[:last_frame]
+        elif(len(list_frames)%2!=0):
+            last_frame=len(list_frames)//2
+            list_frames=list_frames[:last_frame+1]
+            
         video_capture.release()
         return list_frames
     def parse_csv_to_dict(self):
