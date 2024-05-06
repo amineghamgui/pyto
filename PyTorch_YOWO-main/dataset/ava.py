@@ -168,7 +168,7 @@ class AVA_Dataset(Dataset):
 
 
             seq=self.l_clip[idx]
-            keyframe_info=self.l_clip[idx][12]
+            keyframe_info=self.l_clip[idx][-1]
 
             # load a video clip
             
