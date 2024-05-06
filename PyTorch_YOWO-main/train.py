@@ -249,6 +249,7 @@ def train():
                     
             else:
                 # Backward
+                print(losses)
                 losses.backward()
 
                 # Optimize
