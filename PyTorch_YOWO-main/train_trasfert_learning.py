@@ -339,7 +339,7 @@ def train():
                 t0 = time.time()
 
         lr_scheduler.step()
-        
+        print("a ",a, type(a) ,"b :",b, type(b) ,"c  :",c, type(c))
         # evaluation
         if epoch % args.eval_epoch == 0 or (epoch + 1) == max_epoch:
             # check evaluator
