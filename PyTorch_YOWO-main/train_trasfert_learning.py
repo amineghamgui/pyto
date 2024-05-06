@@ -131,12 +131,22 @@ def load_weight(model, path_to_ckpt=None):
     print('Finished loading model!')
 
     return model                    
-
+import wandb
 def train():
     args = parse_args()
     print("Setting Arguments.. : ", args)
     print("----------------------------------------------------------")
-
+    ######################################affichage des donnees avec Wandb####################################################"
+    wandb.login(key='567e34776ff4ffdb596ffacdba0417941f618300')
+    run = wandb.init(
+        # Set the project where this run will be logged
+        project="YOWO_project",
+        # Track hyperparameters and run metadata
+        config={
+            
+            "epochs": 10,
+        },
+    )
     # dist
     print('World size: {}'.format(distributed_utils.get_world_size()))
     if args.distributed:
