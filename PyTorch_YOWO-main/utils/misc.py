@@ -76,7 +76,7 @@ def build_dataset(d_cfg, args, is_train=False):
             len_clip=d_cfg['len_clip'],
             sampling_rate=d_cfg['sampling_rate']
         )
-        num_classes =5
+        num_classes =2
         # num_classes = 80
 
         # evaluator
