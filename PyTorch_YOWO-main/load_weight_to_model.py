@@ -58,7 +58,7 @@ if __name__ == '__main__':
     m_cfg = build_model_config(args)
 
     class_names = d_cfg['label_map']
-    num_classes = 5
+    num_classes = 2
 
     # transform
     basetransform = BaseTransform(
