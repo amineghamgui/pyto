@@ -56,12 +56,16 @@ def load_weight(model, path_to_ckpt=None):
     # model state dict
     model_state_dict = model.state_dict()
     # check
+    i=0
     for k in list(checkpoint_state_dict.keys()):
         if k in model_state_dict:
             shape_model = tuple(model_state_dict[k].shape)
             shape_checkpoint = tuple(checkpoint_state_dict[k].shape)
             if shape_model != shape_checkpoint:
-                checkpoint_state_dict.pop(k)
+                # checkpoint_state_dict.pop(k)
+                checkpoint_state_dict[k]=shape_model[k]
+                i=i+1
+                print("************************",i)
         else:
             # checkpoint_state_dict.pop(k)
             print(k)
