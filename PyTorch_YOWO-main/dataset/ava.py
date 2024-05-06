@@ -216,7 +216,7 @@ if __name__ == '__main__':
 
     is_train = False
     img_size = 224
-    len_clip = 25
+    len_clip = 16
     dataset_config = {
 
     }
