@@ -251,6 +251,7 @@ def train():
 
             print(loss_dict)
             print(type(loss_dict))
+            print(loss_dict.keys())
             losses = loss_dict['losses']
             losses = losses / d_cfg['accumulate']
 
