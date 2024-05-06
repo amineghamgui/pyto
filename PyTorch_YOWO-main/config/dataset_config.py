@@ -161,9 +161,9 @@ dataset_config = {
         'warmup_factor': 0.00066667,
         'wp_iter': 500,
         # class names
-        'valid_num_classes': 5,
+        'valid_num_classes': 2,
         # 'valid_num_classes': 80,
-        'label_map': ('bend/bow(at the waist)', 'crawl', 'crouch/kneel', 'dance', 'fall down'),
+        'label_map': ('SL', 'NR'),
                     
         # 'label_map': (
         #             'bend/bow(at the waist)', 'crawl', 'crouch/kneel', 'dance', 'fall down',  # 1-5
