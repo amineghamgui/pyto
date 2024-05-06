@@ -228,7 +228,7 @@ def train():
             losses = loss_dict['losses']
             losses = losses / d_cfg['accumulate']
             print(type(loss_dict))
-            print(loss_dict.keys()
+            print(loss_dict.keys())
             # reduce            
             loss_dict_reduced = distributed_utils.reduce_dict(loss_dict)
 
