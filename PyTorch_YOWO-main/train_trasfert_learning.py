@@ -157,11 +157,11 @@ def train():
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     # Chargez le modèle sur l'appareil disponible
+    #************************************trnsfert learning ava **********************************************************************
     model = torch.load(model_path, map_location=device)
-
-    
     model.pred = nn.Conv2d(1024, model.num_anchors * (1 + num_classes + 4), kernel_size=1)
-    model.num_classes=5
+    
+    model.num_classes=2
     
     model = model.to(device).train()
     for param in model.parameters():
