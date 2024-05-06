@@ -324,10 +324,10 @@ def train():
                 for k in loss_dict_reduced.keys():
                     log += '[{}: {:.2f}]'.format(k, loss_dict[k])
                 l_dictio=list(loss_dict_reduced.keys())
-                a=loss_dict[l_dictio[0]] 
-                b=loss_dict[l_dictio[1]] 
-                c=loss_dict[l_dictio[2]] 
-                d=loss_dict[l_dictio[3]]
+                a=loss_dict[l_dictio[0]].item()
+                b=loss_dict[l_dictio[1]].item() 
+                c=loss_dict[l_dictio[2]].item()
+                d=loss_dict[l_dictio[3]].item()
                 
                 # other infor
                 log += '[time: {:.2f}]'.format(t1 - t0)
