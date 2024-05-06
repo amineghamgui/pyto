@@ -133,6 +133,10 @@ def load_weight(model, path_to_ckpt=None):
     return model                    
 import wandb
 def train():
+    a=0
+    b=0
+    c=0
+    d=0
     args = parse_args()
     print("Setting Arguments.. : ", args)
     print("----------------------------------------------------------")
@@ -320,7 +324,11 @@ def train():
                 for k in loss_dict_reduced.keys():
                     log += '[{}: {:.2f}]'.format(k, loss_dict[k])
                 l_dictio=list(loss_dict_reduced.keys())
-                wandb.log({"loss_conf train":loss_dict[l_dictio[0]] ,"loss_cls train":loss_dict[l_dictio[1]] ,"loss_box train ":loss_dict[l_dictio[2]] ,"losses train ": loss_dict[l_dictio[3]] })
+                a=loss_dict[l_dictio[0]] 
+                b=loss_dict[l_dictio[1]] 
+                c=loss_dict[l_dictio[2]] 
+                d=loss_dict[l_dictio[3]]
+                
                 # other infor
                 log += '[time: {:.2f}]'.format(t1 - t0)
                 log += '[size: {}]'.format(d_cfg['train_size'])
@@ -348,7 +356,8 @@ def train():
 
                     # evaluate
                     evaluator.evaluate_frame_map(model_eval, epoch + 1)
-                    wandb.log({"frame_map": evaluator.evaluate_frame_map(model_eval, epoch + 1)})
+                    wandb.log({"frame_map": evaluator.evaluate_frame_map(model_eval, epoch + 1),
+                              "loss_conf train":a,"loss_cls train":b,"loss_box train ":c,"losses train ":d })
                     # set train mode.
                     model_eval.trainable = True
                     model_eval.train()
