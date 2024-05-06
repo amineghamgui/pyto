@@ -19,7 +19,7 @@ from utils.com_flops_params import FLOPs_and_Params
 from utils.misc import CollateFunc, build_dataset, build_dataloader
 from utils.solver.optimizer import build_optimizer
 from utils.solver.warmup_schedule import build_warmup
-from utils.misc import load_weight
+# from utils.misc import load_weight
 
 from config import build_dataset_config, build_model_config
 from models.detector import build_model
@@ -97,6 +97,41 @@ def worker_init_fn(dump):
     set_seed(GLOBAL_SEED)
 
 
+def load_weight(model, path_to_ckpt=None):
+    if path_to_ckpt is None:
+        print('No trained weight ..')
+        return model
+        
+    checkpoint = torch.load(path_to_ckpt, map_location='cpu')
+    # checkpoint state dict
+    checkpoint_state_dict = checkpoint.pop("model")
+    # model state dict
+    model_state_dict = model.state_dict()
+    
+    #initialiser les pred.wegth et pred.bias de la couche de sortie 
+    checkpoint_state_dict['pred.bias']=model_state_dict['pred.bias']
+    checkpoint_state_dict['pred.weight']=model_state_dict['pred.weight']
+    
+    # check
+    i=0
+    for k in list(checkpoint_state_dict.keys()):
+        if k in model_state_dict:
+            shape_model = tuple(model_state_dict[k].shape)
+            shape_checkpoint = tuple(checkpoint_state_dict[k].shape)
+            if shape_model != shape_checkpoint:
+                checkpoint_state_dict.pop(k)
+                # checkpoint_state_dict[k]=shape_model[k]
+                # i=i+1
+                # print("************************",i)
+        else:
+            checkpoint_state_dict.pop(k)
+            # print(k)
+
+    model.load_state_dict(checkpoint_state_dict)
+    print('Finished loading model!')
+
+    return model                    
+
 def train():
     args = parse_args()
     print("Setting Arguments.. : ", args)
@@ -136,33 +171,17 @@ def train():
 
     
 
-    # Define the path where you saved the model
-    # model_path=os.path.join("/kaggle/input/ava-model-5-classe-not-weigth/ava_model_5_classe.pth")
-    
-    # net = build_model(args=args,
-    #                   d_cfg=d_cfg,
-    #                   m_cfg=m_cfg,
-    #                   device=device, 
-    #                   num_classes=num_classes, 
-    #                   trainable=True,
-    #                   resume=args.resume)
-    # modelwithweight = load_weight(model=net, path_to_ckpt="/kaggle/input/5classe-pretrained-ava/5classe pretrained ava.pth")
-    # model = modelwithweight
-
-    
-
-    model_path = "/kaggle/input/model-yowo-80classes-pretrained-ava/model_yowo_80classes_pretrained_AVA.pth"
-    # Load the model
-    
-
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    # Chargez le modèle sur l'appareil disponible
-    #************************************trnsfert learning ava **********************************************************************
-    model = torch.load(model_path, map_location=device)
-    model.pred = nn.Conv2d(1024, model.num_anchors * (1 + num_classes + 4), kernel_size=1)
-    
-    model.num_classes=2
-    
+    # Define the path where you saved the model    
+    net = build_model(args=args,
+                      d_cfg=d_cfg,
+                      m_cfg=m_cfg,
+                      device=device, 
+                      num_classes=num_classes, 
+                      trainable=True,
+                      resume=args.resume)
+    modelwithweight = load_weight(model=net, path_to_ckpt="/kaggle/input/yowoplusfps33-yowonano/yowo_nano_ava_v2.2_18.4.pth")
+    model = modelwithweight
+  
     model = model.to(device).train()
     for param in model.parameters():
         param.to(device)
