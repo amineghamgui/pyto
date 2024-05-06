@@ -153,7 +153,13 @@ def train():
 
     model_path = "/kaggle/input/model-yowo-80classes-pretrained-ava/model_yowo_80classes_pretrained_AVA.pth"
     # Load the model
-    model = torch.load(model_path)
+    
+
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    # Chargez le modèle sur l'appareil disponible
+    model = torch.load(model_path, map_location=device)
+
+    
     model.pred = nn.Conv2d(1024, model.num_anchors * (1 + num_classes + 4), kernel_size=1)
     model.num_classes=5
     
