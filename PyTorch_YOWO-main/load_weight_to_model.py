@@ -8,7 +8,7 @@ import torch
 from PIL import Image
 import imageio
 from dataset.transforms import BaseTransform
-from utils.misc import load_weight
+# from utils.misc import load_weight
 from config import build_dataset_config, build_model_config
 from models.detector import build_model
 import imageio
@@ -45,35 +45,40 @@ def parse_args():
     return parser.parse_args()
 
 
-# def load_weight(model, path_to_ckpt=None):
-#     if path_to_ckpt is None:
-#         print('No trained weight ..')
-#         return model
+def load_weight(model, path_to_ckpt=None):
+    if path_to_ckpt is None:
+        print('No trained weight ..')
+        return model
         
-#     checkpoint = torch.load(path_to_ckpt, map_location='cpu')
-#     # checkpoint state dict
-#     checkpoint_state_dict = checkpoint.pop("model")
-#     # model state dict
-#     model_state_dict = model.state_dict()
-#     # check
-#     i=0
-#     for k in list(checkpoint_state_dict.keys()):
-#         if k in model_state_dict:
-#             shape_model = tuple(model_state_dict[k].shape)
-#             shape_checkpoint = tuple(checkpoint_state_dict[k].shape)
-#             if shape_model != shape_checkpoint:
-#                 # checkpoint_state_dict.pop(k)
-#                 checkpoint_state_dict[k]=shape_model[k]
-#                 i=i+1
-#                 print("************************",i)
-#         else:
-#             # checkpoint_state_dict.pop(k)
-#             print(k)
+    checkpoint = torch.load(path_to_ckpt, map_location='cpu')
+    # checkpoint state dict
+    checkpoint_state_dict = checkpoint.pop("model")
+    # model state dict
+    model_state_dict = model.state_dict()
+    
+    #initialiser les pred.wegth et pred.bias de la couche de sortie 
+    checkpoint_state_dict['pred.bias']=model_state_dict['pred.bias']
+    checkpoint_state_dict['pred.weight']=model_state_dict['pred.weight']
+    
+    # check
+    i=0
+    for k in list(checkpoint_state_dict.keys()):
+        if k in model_state_dict:
+            shape_model = tuple(model_state_dict[k].shape)
+            shape_checkpoint = tuple(checkpoint_state_dict[k].shape)
+            if shape_model != shape_checkpoint:
+                checkpoint_state_dict.pop(k)
+                # checkpoint_state_dict[k]=shape_model[k]
+                # i=i+1
+                # print("************************",i)
+        else:
+            checkpoint_state_dict.pop(k)
+            # print(k)
 
-#     model.load_state_dict(checkpoint_state_dict)
-#     print('Finished loading model!')
+    model.load_state_dict(checkpoint_state_dict)
+    print('Finished loading model!')
 
-#     return model                    
+    return model                    
 if __name__ == '__main__':
     args = parse_args()
     # cuda
