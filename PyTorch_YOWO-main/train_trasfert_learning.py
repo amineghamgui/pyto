@@ -320,7 +320,7 @@ def train():
                 for k in loss_dict_reduced.keys():
                     log += '[{}: {:.2f}]'.format(k, loss_dict[k])
                 l_dictio=list(loss_dict_reduced.keys())
-                wandb.log({"loss_conf train":l_dictio[0] ,"loss_cls train":l_dictio[1] ,"loss_box train ":l_dictio[2] ,"losses train ":l_dictio[3] })
+                wandb.log({"loss_conf train":float(l_dictio[0]) ,"loss_cls train":float(l_dictio[1]) ,"loss_box train ":float(l_dictio[2]) ,"losses train ": float(l_dictio[3]) })
                 # other infor
                 log += '[time: {:.2f}]'.format(t1 - t0)
                 log += '[size: {}]'.format(d_cfg['train_size'])
