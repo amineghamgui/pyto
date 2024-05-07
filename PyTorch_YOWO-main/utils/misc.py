@@ -229,59 +229,6 @@ class AVA_FocalLoss(object):
 
         return loss
 
-# class AVA_FocalLoss(object):
-#     """ Focal loss for AVA"""
-#     def __init__(self, device, gamma, num_classes, reduction='none'):
-#         with open('config/ava_categories_ratio.json', 'r') as fb:
-#             self.class_ratio = json.load(fb)
-#         self.device = device
-#         self.gamma = gamma
-#         self.num_classes = num_classes
-#         self.reduction = reduction
-#         self.class_weight = torch.zeros(1).to(device)
-#         #self.class_weight = torch.zeros(80).to(device)
-#         self._init_class_weight()
-
-
-#     def _init_class_weight(self):
-#         for i in range(1, 2):
-#             self.class_weight[i - 1] = 1 - self.class_ratio[str(i)]
-
-#         # for i in range(1, 81):
-#         #     self.class_weight[i - 1] = 1 - self.class_ratio[str(i)]
-
-
-#     def __call__(self, logits, targets):
-#         '''
-#         inputs: (N, C) -- result of sigmoid
-#         targets: (N, C) -- one-hot variable
-#         '''
-#         # process class pred
-#         inputs1 = torch.clamp(torch.softmax(logits[..., :14], dim=-1), min=1e-4, max=1 - 1e-4)
-#         inputs2 = torch.clamp(torch.sigmoid(logits[..., 14:]), min=1e-4, max=1 - 1e-4)
-
-#         inputs = torch.cat([inputs1, inputs2], dim=-1)
-
-#         # weight matrix
-#         weight_matrix = self.class_weight.expand(logits.size(0), self.num_classes)
-#         weight_p1 = torch.exp(weight_matrix[targets == 1])
-#         weight_p0 = torch.exp(1 - weight_matrix[targets == 0])
-
-#         # pos & neg output
-#         p_1 = inputs[targets == 1]
-#         p_0 = inputs[targets == 0]
-
-#         # loss
-#         loss1 = torch.pow(1 - p_1, self.gamma) * torch.log(p_1) * weight_p1
-#         loss2 = torch.pow(p_0, self.gamma) * torch.log(1 - p_0) * weight_p0
-#         loss = -loss1.sum() - loss2.sum()
-
-#         if self.reduction == 'sum':
-#             loss = loss.sum()
-#         elif self.reduction == 'mean':
-#             loss = loss.mean()
-
-#         return loss
 
 
 class Softmax_FocalLoss(nn.Module):
