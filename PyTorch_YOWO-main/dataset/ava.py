@@ -6,10 +6,10 @@ import torch
 from torch.utils.data import Dataset
 from PIL import Image
 
-try:
-    import ava_helper
-except:
-    from . import ava_helper
+# try:
+#     import ava_helper
+# except:
+#     from . import ava_helper
 
 
 # Dataset for AVA
