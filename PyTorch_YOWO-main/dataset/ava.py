@@ -38,7 +38,6 @@ class AVA_Dataset(Dataset):
         self.len_clip = len_clip
         self.sampling_rate = sampling_rate
         self.seq_len = self.len_clip * self.sampling_rate
-        #self.pathhhhh="/kaggle/input/train-csv/train.csv"
         # load ava data
         self._load_data()
 
@@ -86,9 +85,7 @@ class AVA_Dataset(Dataset):
 
     
     def get_boxes_to_seq(self):
-#         self.boxxx_list=parse_csv_to_dict(csv_file)
-        #self.csv_file
-        
+
         result_dict = {}
 
         with open(self.pathhhhh, "r") as f:
